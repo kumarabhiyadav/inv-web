@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, Store, RefreshCcw } from "lucide-react";
 import "./PurchaseList.css";
-import { remoteCreateQR, remoteFetch } from "../../api";
+import { formateDate, printLocal, remoteCreateQR, remoteFetch } from "../../api";
 import axios from "axios";
 
 const PurchaseList = () => {
@@ -41,6 +41,7 @@ const PurchaseList = () => {
     }
   };
 
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
   async function moveToInventory(product, supplier, purchaseid) {
     console.log("Jel")
     let res = await axios.post(remoteCreateQR, {
@@ -49,30 +50,46 @@ const PurchaseList = () => {
     });
     if (res["data"]["success"]) {
 
-        if(res['data']['message'] == "Moved TO INVENTORY"){
+      if (res['data']['message'] == "Moved TO INVENTORY") {
+        console.warn(res['data']['result'])
+        console.log(res['data'])
+        let lots = res['data']['result']['newQuantity'];
+        let objectForPrint = {
+          sku: res['data']['result']['sku'],
+          pcost: res['data']['result']['pcost'],
+          sp: res['data']['result']['sp'],
+          lot: lots,
+          qr: res['data']['qr'],
+          date: res['data']['result']['name'],
 
-          //Hit Local API
 
 
-        console.log(product);
+
         }
+        // objectForPrint['count'] = 1
+        // let results = await axios.post(printLocal, objectForPrint);
+
+
+        for (let i = 1; i <= lots; i++) {
+          objectForPrint['count'] = i
+
+          console.log(objectForPrint);
+          // await delay(1000);
+
+          let results = await axios.post(printLocal, objectForPrint);
+
+        }
+
+
+
+
+      }
 
 
 
 
       showToast("success", res["data"]["success"]);
-      for (let index = 0; index < purchases.length; index++) {
-        const element = purchases[index];
 
-        if (element._id === purchaseid) {
-          for (let index = 0; index < purchases.subProducts.length; index++) {
-            const prod = purchases.subProducts[index];
-            if (prod._id == product._id) {
-              prod["inInventory"] = true;
-            }
-          }
-        }
-      }
     }
     setPurchases([...purchases]);
   }
