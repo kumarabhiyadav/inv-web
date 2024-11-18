@@ -1,0 +1,237 @@
+/* PurchaseList.css */
+.purchase-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  }
+  
+  .card-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .refresh-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+  
+  .refresh-button:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .purchase-list {
+    padding: 20px;
+  }
+  
+  .purchase-item {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+  
+  .purchase-header {
+    padding: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: background-color 0.2s;
+  }
+  
+  .purchase-header:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .purchase-info {
+    flex: 1;
+  }
+  
+  .purchase-date {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  .supplier-info {
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-left: 24px;
+  }
+  
+  .supplier-id {
+    color: #999;
+    margin-left: 8px;
+  }
+  
+  .purchase-total {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+  
+  .products-table-container {
+    padding: 16px;
+    border-top: 1px solid #eee;
+  }
+  
+  .products-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .products-table th {
+    text-align: left;
+    color: #666;
+    font-weight: 500;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  
+  .products-table td {
+    padding: 8px;
+    border-top: 1px solid #eee;
+  }
+  
+  .products-table td:not(:first-child) {
+    text-align: right;
+  }
+  
+  /* Loading State */
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: #666;
+  }
+  
+  .spinner {
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Error State */
+  .error-alert {
+    padding: 16px;
+    background-color: #fee2e2;
+    color: #991b1b;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .error-alert button {
+    background: #991b1b;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Empty State */
+  .empty-state {
+    padding: 40px;
+    text-align: center;
+    color: #666;
+  }
+  
+  /* Toast Notifications */
+  .toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .toast {
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    color: white;
+    animation: slideIn 0.3s ease-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toast.success {
+    background-color: #22c55e;
+  }
+  
+  .toast.error {
+    background-color: #ef4444;
+  }
+  
+  .toast.info {
+    background-color: #3b82f6;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 640px) {
+    .purchase-header {
+      flex-direction: column;
+    }
+  
+    .purchase-total {
+      margin-top: 8px;
+    }
+  
+    .products-table {
+      display: block;
+      overflow-x: auto;
+    }
+  
+    .toast-container {
+      left: 20px;
+      right: 20px;
+    }
+  
+    .toast {
+      text-align: center;
+    }
+  }
