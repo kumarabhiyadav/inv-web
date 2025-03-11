@@ -1,5 +1,5 @@
-export const remoteFetch = "https://inventory-api-khnq.onrender.com/api/inventory/fetchPurchase"
-export const remoteCreateQR = "https://inventory-api-khnq.onrender.com/api/inventory/createQRCode"
+export const remoteFetch = "http://65.20.69.134:6001/api/inventory/fetchPurchase"
+export const remoteCreateQR = "http://65.20.69.134:6001/api/inventory/createQRCode"
 export const printLocal = "http://localhost:8000/generate-receipt"
 
 export function formateDate(data) {
